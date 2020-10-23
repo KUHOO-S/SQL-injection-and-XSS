@@ -72,6 +72,14 @@
 				include("config.php");
 				if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 					$key = $_POST['searchitem'];
+
+					// Declare a regular expression 
+					$regex = '/^[a-zA-Z ]*$/'; 
+
+					if(preg_match($regex, $key)) { 
+						//echo("Name string matching with". " regular expression"); 
+						
+											
 					$name = explode(' ', $key, 2); // Break String into Array.
 					if(empty($name[1])) {
 						$sql = "SELECT * FROM users WHERE firstname = '$name[0]' OR lastname= '$name[0]'";
@@ -93,6 +101,10 @@
 							echo '<br>';
 						}
 					}
+				}
+				else { 
+					echo("Only letters and white space". " allowed in name string"); 
+					} 
 				}
 			?>
 		</div>
