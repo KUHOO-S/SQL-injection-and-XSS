@@ -6,7 +6,7 @@
    if($_SERVER["REQUEST_METHOD"] == "POST") {
       $myusername = mysqli_real_escape_string($db,$_POST['username']);
       $mypassword = mysqli_real_escape_string($db,$_POST['password']);
-      $sql = "SELECT * FROM admin WHERE username = '$myusername' and password = '$mypassword'";
+      $sql = "SELECT * FROM users WHERE username = '$myusername' and password = '$mypassword'";
       $sql= str_replace("\'","'",$sql);		/*to escape blanks and spaces from input*/
       $result = mysqli_query($db,$sql);		
       $count = mysqli_num_rows($result);
@@ -40,7 +40,7 @@
 		  $_SESSION['query_result'] = $query_result;
 		  //echo $_SESSION['login_user'];
 		  echo $myusername;
-       //   header("location: welcome.php");
+         header("location: welcome.php");
 	  }
 	  else{
 		  $error = "Your Login Name or Password is invalid";
@@ -63,67 +63,41 @@
 
    }
 ?>
-<html>
-   <!--
-Author:Dnyaneshwar Giri
-Date:26-03-2019
- -->
-   <head>
-      <title>Login Page</title>
-      <head>
-		<link rel="stylesheet" type="text/css" href="css/font-awesome.css"/>
-		<link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
-		<title>Login</title>
-		<style>
-		#loginform{
-			display:block;
-			margin-left: auto;
-			margin-right: auto;
-			width: 30%;
-		}
-		#submit{
-			display:block;
-			margin-left: auto;
-			margin-right: auto;
-			text-align:center;
-			font-family: 'Quicksand', sans-serif;
-			}
-		</style>
-	</head>
-	<body>
-		<div class="container-fluid" id='container' style="margin:0;padding:0;">
-			<div class="row">
-			<div  class="col-md-12 col-lg-12 col-sm-12 col-xs-12" style="height:180px;color:82B1FF;">
-					<p style="font-size:80px;text-align:center;">Login System</p>
-				</div>
-				<div  class="col-md-3 col-lg-3"></div>
-				<div class="col-sm-12 col-xs-12 col-lg-6 col-md-6" style="background-color:E1BEE7;border-radius:10px;">
-						<br/>
-						<br/>
-					   <form action="" name="loginform"  method="POST">
-							  <p style="text-align:center;font-size:24px;"><span class="fa fa-user-circle"></span> <input type="text" name="username"  placeholder="your username" class="form-group input-lg" required></p>
-							  <br/>
-							  <p style="text-align:center;font-size:24px;"><span class="fa fa-key"></span> <input type="password" name="password"  placeholder="your password" class="form-group input-lg" required></p>
-							  <button type="submit" id="submit"  class="btn  btn-lg text-dark form-group" style="color:4CAF50;"  >
-								<span style="font-size:24px;"> Login </span>
-								<span style="font-size:24px;" class="fa fa-sign-in"></span>
-							  </button>
-							  <br/>
-							  <br/>
-						</form>
-						<div style = "font-size:24px; color:#cc0000; margin-top:10px"><?php echo $error; ?></div>
-				</div>
-				<div style="" class="col-md-3 col-lg-3"></div>
 
-			</div>
-		</div>
-		<p id="demo" onclick="myFunction()">Click me to change my HTML content (innerHTML).</p>
-<script>
-function myFunction() {
-  document.getElementById("demo").innerHTML = "Paragraph changed!";
-}
-</script>
-		<script type='text/javascript'>
-		</script>
-   </body>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BuggyApp</title>
+    <link rel="stylesheet" href="styles.css" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+<h1 align="center">Login</h1>
+<br><br>
+
+
+<form name="loginform" method="POST" action="">
+
+    <table align="center">
+    
+    <tr>
+    <td><label>User ID:</label></td>
+    <td><input type="text" name="username" size="30"></td></tr>
+    <tr><td></td></tr>
+    <tr><td></td></tr>
+    <tr>
+    <td><label>Password:</label></td>
+    <td><input type="password" name="password" size="30"></td></tr>
+    <tr><td></td></tr>
+    <tr><td></td></tr>
+    
+    <tr><td colspan="2" align="center">  <input type="submit" name="submit" value="Submit" onclick="formValidation"> </td></tr></table>
+    
+    </form>
+    <div><p><?php echo $error; ?></p></div>
+</body>
+
 </html>
