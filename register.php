@@ -93,11 +93,13 @@
 
 <?php
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        $userfirstname = $_POST['fname'];
-        $userlastname = $_POST['lname'];
-        $userusername = $_POST['username'];
-        $userpassword = $_POST['password'];
-        $useremail = $_POST['useremail'];
+        $userfirstname =md5($_POST['fname']);
+        $userlastname =md5($_POST['lname']);
+        $userusername =md5($_POST['username']);
+        $userpassword =md5($_POST['password']);
+        $useremail =md5($_POST['useremail']);
+
+ 
         // Check for Some Unique Constraints
         /*
         $query = mysqli_query($conn, "SELECT user_username, user_email FROM users WHERE user_username = '$userusername' OR user_email = '$useremail'");
@@ -130,7 +132,8 @@
              
         }
         header("location:index.php");
-            
+          
+    
     }
 ?>
 

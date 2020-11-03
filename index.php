@@ -43,11 +43,10 @@
 				
       $myusername = mysqli_real_escape_string($db,$_POST['username']);
       $mypassword = mysqli_real_escape_string($db,$_POST['password']);
+      $myusername=md5($myusername);
+      $mypassword=md5($mypassword);
       
-      
-      $regex = '/^[a-zA-Z0-9 ]*$/'; 
 
-		if(preg_match($regex, $myusername)&&preg_match($regex, $mypassword)) {
       
       $sql = "SELECT * FROM users WHERE username = '$myusername' and password = '$mypassword'";
       $sql= str_replace("\'","'",$sql);		/*to escape blanks and spaces from input*/
@@ -60,7 +59,7 @@
       {
 				  foreach($rows as $row)
 			  {		echo $row;
-					echo "<br>";
+					   echo "<br>";
 					   $query_result[]=$row;
 					if(strcmp($row,$myusername))
 					  {
@@ -72,7 +71,8 @@
 					  }
 			  }
 			
-	  }
+     }
+     
 
 
       if($username_find_flag and $password_correct_flag)
@@ -90,11 +90,7 @@
 		  }
 
 
-      }
-
-      else{
-         echo"Bad input";
-      }
+    }
       // sql injection proof code
 
      /* if($count == 1) {
